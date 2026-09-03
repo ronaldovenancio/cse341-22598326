@@ -21,7 +21,8 @@
   },
   "homepage": "https://github.com/ronaldovenancio/cse341-22598326#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "mongodb": "^7.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
