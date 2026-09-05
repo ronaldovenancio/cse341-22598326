@@ -1,3 +1,7 @@
+### ========================================
+### LOCAL
+### ========================================
+
 ### Home
 GET http://localhost:8080/
 
@@ -8,3 +12,19 @@ GET http://localhost:8080/contacts
 
 ### Get single contact
 GET http://localhost:8080/contacts/6a9b81dfa094f18c61e8b5e8
+
+
+### ========================================
+### PRODUCTION - RENDER
+### ========================================
+
+### Home
+GET https://cse341-22598326-1.onrender.com/
+
+
+### Get all contacts
+GET https://cse341-22598326-1.onrender.com/contacts
+
+
+### Get single contact
+GET https://cse341-22598326-1.onrender.com/contacts/6a9b81dfa094f18c61e8b5e8
