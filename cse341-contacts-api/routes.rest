@@ -1,0 +1,10 @@
+### Home
+GET http://localhost:8080/
+
+
+### Get all contacts
+GET http://localhost:8080/contacts
+
+
+### Get single contact
+GET http://localhost:8080/contacts/6a9b81dfa094f18c61e8b5e8
