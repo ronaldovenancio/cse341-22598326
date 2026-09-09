@@ -1,0 +1,206 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Temples API",
+    "description": "API documentation for the Temples application",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/temples/": {
+      "get": {
+        "tags": [
+          "Temples"
+        ],
+        "summary": "Get all temples",
+        "description": "Returns all temples. A valid API key must be provided in the apiKey request header.",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "API key required to access the temple data.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temples retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "temple_id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Aba Nigeria Temple"
+                  },
+                  "location": {
+                    "type": "string",
+                    "example": "Aba, Nigeria"
+                  },
+                  "dedicated": {
+                    "type": "string",
+                    "example": "August 7, 2005"
+                  },
+                  "additionalInfo": {
+                    "type": "boolean",
+                    "example": false
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Server error while retrieving temples."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Temples"
+        ],
+        "summary": "Create a new temple",
+        "description": "Creates a new temple in the MongoDB temples collection.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Temple information.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "temple_id": {
+                  "type": "number",
+                  "example": 999
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Example Temple"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Example City"
+                },
+                "dedicated": {
+                  "type": "string",
+                  "example": "September 8, 2026"
+                },
+                "additionalInfo": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "required": [
+                "temple_id",
+                "name",
+                "location",
+                "dedicated",
+                "additionalInfo"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temple created successfully."
+          },
+          "400": {
+            "description": "The temple name was not provided.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Content can not be empty!"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Server error while creating the temple."
+          }
+        }
+      }
+    },
+    "/temples/{temple_id}": {
+      "get": {
+        "tags": [
+          "Temples"
+        ],
+        "summary": "Get one temple",
+        "description": "Returns one temple using its temple_id.",
+        "parameters": [
+          {
+            "name": "temple_id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Numeric ID of the temple."
+          },
+          {
+            "name": "apiKey",
+            "in": "header",
+            "description": "API key required to access the temple data.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temple retrieved successfully.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "temple_id": {
+                  "type": "number",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Aba Nigeria Temple"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Aba, Nigeria"
+                },
+                "dedicated": {
+                  "type": "string",
+                  "example": "August 7, 2005"
+                },
+                "additionalInfo": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Temple not found."
+          },
+          "500": {
+            "description": "Server error while retrieving the temple."
+          }
+        }
+      }
+    }
+  }
+}
