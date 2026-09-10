@@ -28,3 +28,57 @@ GET https://cse341-22598326-1.onrender.com/contacts
 
 ### Get single contact
 GET https://cse341-22598326-1.onrender.com/contacts/6a9b81dfa094f18c61e8b5e8
+
+
+
+### ========================================
+### CONTACTS API - LOCAL CRUD TEST
+### ========================================
+
+@baseUrl = http://localhost:8080
+
+
+### 1 - GET ALL CONTACTS
+GET {{baseUrl}}/contacts
+
+
+### 2 - CREATE CONTACT
+POST {{baseUrl}}/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Daniel",
+  "lastName": "Mendes",
+  "email": "daniel.mendes@example.com",
+  "favoriteColor": "Orange",
+  "birthday": "1999-06-20"
+}
+
+
+### 3 - GET CREATED CONTACT
+GET {{baseUrl}}/contacts/6aa2fd45cdc7c9ce5b086ed0
+
+
+### 4 - UPDATE CREATED CONTACT
+PUT {{baseUrl}}/contacts/6aa2fd45cdc7c9ce5b086ed0
+Content-Type: application/json
+
+{
+  "firstName": "Daniel",
+  "lastName": "Mendes Updated",
+  "email": "daniel.updated@example.com",
+  "favoriteColor": "Black",
+  "birthday": "1999-06-20"
+}
+
+
+### 5 - GET UPDATED CONTACT
+GET {{baseUrl}}/contacts/6aa2fd45cdc7c9ce5b086ed0
+
+
+### 6 - DELETE CONTACT
+DELETE {{baseUrl}}/contacts/6aa2fd45cdc7c9ce5b086ed0
+
+
+### 7 - CONFIRM CONTACT WAS DELETED
+GET {{baseUrl}}/contacts/6aa2fd45cdc7c9ce5b086ed0
