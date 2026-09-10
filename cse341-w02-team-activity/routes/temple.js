@@ -115,4 +115,79 @@ routes.post(
   temples.create
 );
 
+routes.put(
+  '/:id',
+  /*
+    #swagger.tags = ['Temples']
+    #swagger.summary = 'Update a temple'
+    #swagger.description = 'Updates an existing temple using its MongoDB document ID.'
+
+    #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'MongoDB ID of the temple to update.',
+      required: true,
+      type: 'string'
+    }
+
+    #swagger.parameters['body'] = {
+      in: 'body',
+      description: 'Temple information to update.',
+      required: true,
+      schema: {
+        temple_id: 9999,
+        name: 'Updated Temple',
+        location: 'Updated City',
+        dedicated: 'September 10, 2026',
+        additionalInfo: false
+      }
+    }
+
+    #swagger.responses[200] = {
+      description: 'Temple updated successfully.'
+    }
+
+    #swagger.responses[400] = {
+      description: 'No update data was provided.'
+    }
+
+    #swagger.responses[404] = {
+      description: 'Temple was not found.'
+    }
+
+    #swagger.responses[500] = {
+      description: 'Error updating the temple.'
+    }
+  */
+  temples.update
+);
+
+routes.delete(
+  '/:id',
+  /*
+    #swagger.tags = ['Temples']
+    #swagger.summary = 'Delete a temple'
+    #swagger.description = 'Deletes an existing temple using its MongoDB document ID.'
+
+    #swagger.parameters['id'] = {
+      in: 'path',
+      description: 'MongoDB ID of the temple to delete.',
+      required: true,
+      type: 'string'
+    }
+
+    #swagger.responses[200] = {
+      description: 'Temple deleted successfully.'
+    }
+
+    #swagger.responses[404] = {
+      description: 'Temple was not found.'
+    }
+
+    #swagger.responses[500] = {
+      description: 'Error deleting the temple.'
+    }
+  */
+  temples.delete
+);
+
 module.exports = routes;

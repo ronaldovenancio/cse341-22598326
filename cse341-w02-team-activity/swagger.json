@@ -201,6 +201,96 @@
           }
         }
       }
+    },
+    "/temples/{id}": {
+      "put": {
+        "tags": [
+          "Temples"
+        ],
+        "summary": "Update a temple",
+        "description": "Updates an existing temple using its MongoDB document ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the temple to update."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Temple information to update.",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "temple_id": {
+                  "type": "number",
+                  "example": 9999
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Updated Temple"
+                },
+                "location": {
+                  "type": "string",
+                  "example": "Updated City"
+                },
+                "dedicated": {
+                  "type": "string",
+                  "example": "September 10, 2026"
+                },
+                "additionalInfo": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temple updated successfully."
+          },
+          "400": {
+            "description": "No update data was provided."
+          },
+          "404": {
+            "description": "Temple was not found."
+          },
+          "500": {
+            "description": "Error updating the temple."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Temples"
+        ],
+        "summary": "Delete a temple",
+        "description": "Deletes an existing temple using its MongoDB document ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the temple to delete."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Temple deleted successfully."
+          },
+          "404": {
+            "description": "Temple was not found."
+          },
+          "500": {
+            "description": "Error deleting the temple."
+          }
+        }
+      }
     }
   }
 }
