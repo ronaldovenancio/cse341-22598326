@@ -38,15 +38,9 @@
           "200": {
             "description": "Contacts retrieved successfully.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "$ref": "#/definitions/Contact"
-                }
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Contact"
               },
               "xml": {
                 "name": "main"
@@ -68,10 +62,10 @@
           {
             "name": "body",
             "in": "body",
-            "description": "Contact information.",
+            "description": "Contact information. All fields are required.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Contact"
+              "$ref": "#/definitions/ContactInput"
             }
           }
         ],
@@ -79,34 +73,7 @@
           "201": {
             "description": "Contact created successfully.",
             "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "object"
-                },
-                "properties": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "string"
-                        },
-                        "example": {
-                          "type": "string",
-                          "example": "68c000000000000000000001"
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
+              "$ref": "#/definitions/CreateContactResponse"
             }
           },
           "400": {
@@ -169,10 +136,10 @@
           {
             "name": "body",
             "in": "body",
-            "description": "Updated contact information. All contact fields are required.",
+            "description": "Updated contact information. All fields are required.",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Contact"
+              "$ref": "#/definitions/ContactInput"
             }
           }
         ],
@@ -227,113 +194,70 @@
     "Contact": {
       "type": "object",
       "properties": {
-        "type": {
+        "_id": {
           "type": "string",
-          "example": "object"
+          "example": "64f1a2b3c4d5e6f789012345"
         },
-        "required": {
-          "type": "array",
-          "example": [
-            "firstName",
-            "lastName",
-            "email",
-            "favoriteColor",
-            "birthday"
-          ],
-          "items": {
-            "type": "string"
-          }
+        "firstName": {
+          "type": "string",
+          "example": "William"
         },
-        "properties": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "description": {
-                  "type": "string",
-                  "example": "MongoDB generated contact ID"
-                },
-                "readOnly": {
-                  "type": "boolean",
-                  "example": true
-                },
-                "example": {
-                  "type": "string",
-                  "example": "68c000000000000000000001"
-                }
-              }
-            },
-            "firstName": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "William"
-                }
-              }
-            },
-            "lastName": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "Cabral"
-                }
-              }
-            },
-            "email": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "william@example.com"
-                }
-              }
-            },
-            "favoriteColor": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "Blue"
-                }
-              }
-            },
-            "birthday": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "1995-05-15"
-                }
-              }
-            }
-          }
+        "lastName": {
+          "type": "string",
+          "example": "Cabral"
+        },
+        "email": {
+          "type": "string",
+          "example": "william@example.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "Blue"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1995-05-15"
+        }
+      }
+    },
+    "ContactInput": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "William"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Cabral"
+        },
+        "email": {
+          "type": "string",
+          "example": "william@example.com"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "Blue"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "1995-05-15"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "email",
+        "favoriteColor",
+        "birthday"
+      ]
+    },
+    "CreateContactResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "64f1a2b3c4d5e6f789012345"
         }
       }
     }

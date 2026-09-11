@@ -9,15 +9,12 @@ router.get(
     #swagger.tags = ['Contacts']
     #swagger.summary = 'Get all contacts'
     #swagger.description = 'Returns all contacts stored in MongoDB.'
-
+    
     #swagger.responses[200] = {
       description: 'Contacts retrieved successfully.',
-      schema: {
-        type: 'array',
-        items: {
-          $ref: '#/definitions/Contact'
-        }
-      }
+      schema: [{
+        $ref: '#/definitions/Contact'
+      }]
     }
 
     #swagger.responses[500] = {
@@ -40,12 +37,12 @@ router.get(
       required: true,
       type: 'string'
     }
-
+    
     #swagger.responses[200] = {
       description: 'Contact retrieved successfully.',
       schema: {
-        $ref: '#/definitions/Contact'
-      }
+          $ref: '#/definitions/Contact'
+    }
     }
 
     #swagger.responses[400] = {
@@ -69,26 +66,20 @@ router.post(
     #swagger.tags = ['Contacts']
     #swagger.summary = 'Create a new contact'
     #swagger.description = 'Creates a new contact. All contact fields are required.'
-
+    
     #swagger.parameters['body'] = {
       in: 'body',
-      description: 'Contact information.',
+      description: 'Contact information. All fields are required.',
       required: true,
       schema: {
-        $ref: '#/definitions/Contact'
+          $ref: '#/definitions/ContactInput'
       }
     }
-
+    
     #swagger.responses[201] = {
       description: 'Contact created successfully.',
       schema: {
-        type: 'object',
-        properties: {
-          id: {
-            type: 'string',
-            example: '68c000000000000000000001'
-          }
-        }
+          $ref: '#/definitions/CreateContactResponse'
       }
     }
 
@@ -116,13 +107,13 @@ router.put(
       required: true,
       type: 'string'
     }
-
+    
     #swagger.parameters['body'] = {
       in: 'body',
-      description: 'Updated contact information. All contact fields are required.',
+      description: 'Updated contact information. All fields are required.',
       required: true,
       schema: {
-        $ref: '#/definitions/Contact'
+          $ref: '#/definitions/ContactInput'
       }
     }
 

@@ -22,45 +22,27 @@ const doc = {
   ],
 
   definitions: {
-    Contact: {
-      type: 'object',
-      required: [
-        'firstName',
-        'lastName',
-        'email',
-        'favoriteColor',
-        'birthday'
-      ],
-      properties: {
-        _id: {
-          type: 'string',
-          description: 'MongoDB generated contact ID',
-          readOnly: true,
-          example: '68c000000000000000000001'
-        },
-        firstName: {
-          type: 'string',
-          example: 'William'
-        },
-        lastName: {
-          type: 'string',
-          example: 'Cabral'
-        },
-        email: {
-          type: 'string',
-          example: 'william@example.com'
-        },
-        favoriteColor: {
-          type: 'string',
-          example: 'Blue'
-        },
-        birthday: {
-          type: 'string',
-          example: '1995-05-15'
-        }
-      }
-    }
+  Contact: {
+    _id: '64f1a2b3c4d5e6f789012345',
+    firstName: 'William',
+    lastName: 'Cabral',
+    email: 'william@example.com',
+    favoriteColor: 'Blue',
+    birthday: '1995-05-15'
+  },
+
+  ContactInput: {
+    $firstName: 'William',
+    $lastName: 'Cabral',
+    $email: 'william@example.com',
+    $favoriteColor: 'Blue',
+    $birthday: '1995-05-15'
+  },
+
+  CreateContactResponse: {
+    id: '64f1a2b3c4d5e6f789012345'
   }
+}
 };
 
 const outputFile = './swagger.json';
