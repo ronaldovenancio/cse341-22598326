@@ -1,0 +1,118 @@
+### ========================================
+### W03 TEAM ACTIVITY - CONTACTS API
+### ========================================
+
+@baseUrl = http://localhost:8080
+
+
+### 1 - GET ALL CONTACTS
+GET {{baseUrl}}/contacts
+
+
+### 2 - GET CONTACT BY VALID ID
+### Use an existing ID returned by GET ALL
+GET {{baseUrl}}/contacts/6a9b8188a094f18c61e8b5e4
+
+
+### 3 - GET CONTACT BY INVALID ID
+GET {{baseUrl}}/contacts/123
+
+
+### 4 - CREATE VALID CONTACT
+POST {{baseUrl}}/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Weaver",
+  "email": "aWeaver@test.com",
+  "favoriteColor": "Brown",
+  "birthday": "06/19/2000"
+}
+
+
+### 5 - CREATE CONTACT WITH INVALID EMAIL
+POST {{baseUrl}}/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Weaver",
+  "email": "invalid-email",
+  "favoriteColor": "Brown",
+  "birthday": "06/19/2000"
+}
+
+
+### 6 - CREATE CONTACT WITHOUT REQUIRED FIRSTNAME
+POST {{baseUrl}}/contacts
+Content-Type: application/json
+
+{
+  "lastName": "Weaver",
+  "email": "aWeaver@test.com",
+  "favoriteColor": "Brown",
+  "birthday": "06/19/2000"
+}
+
+
+### 7 - GET CREATED CONTACT
+### Replace CONTACT_ID with insertedId from test 4
+GET {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
+
+
+### 8 - UPDATE VALID CONTACT
+### Replace CONTACT_ID with insertedId from test 4
+PUT {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Weaver Updated",
+  "email": "ashley.updated@test.com",
+  "favoriteColor": "Black",
+  "birthday": "06/19/2000"
+}
+
+
+### 9 - GET UPDATED CONTACT
+GET {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
+
+
+### 10 - UPDATE WITH INVALID EMAIL
+PUT {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Weaver Updated",
+  "email": "invalid-email",
+  "favoriteColor": "Black",
+  "birthday": "06/19/2000"
+}
+
+
+### 11 - UPDATE WITH INVALID ID
+PUT {{baseUrl}}/contacts/123
+Content-Type: application/json
+
+{
+  "firstName": "Ashley",
+  "lastName": "Weaver Updated",
+  "email": "ashley.updated@test.com",
+  "favoriteColor": "Black",
+  "birthday": "06/19/2000"
+}
+
+
+### 12 - DELETE WITH INVALID ID
+DELETE {{baseUrl}}/contacts/123
+
+
+### 13 - DELETE VALID CONTACT
+### RUN THIS LAST
+DELETE {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
+
+
+### 14 - CONFIRM CONTACT WAS DELETED
+GET {{baseUrl}}/contacts/6aa9d7e78d1f1de81edf94be
