@@ -1,0 +1,500 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Movies API",
+    "description": "REST API for managing movies and directors.",
+    "version": "1.0.0"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/movies/": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Get all movies",
+        "description": "Returns all movies stored in the database.",
+        "responses": {
+          "200": {
+            "description": "Movies retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Movie"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Create a movie",
+        "description": "Creates a new movie.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Movie information. All fields are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MovieInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Movie created successfully.",
+            "schema": {
+              "$ref": "#/definitions/CreateResponse"
+            }
+          },
+          "400": {
+            "description": "Validation failed."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Get movie by ID",
+        "description": "Returns one movie using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the movie."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Movie retrieved successfully.",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "400": {
+            "description": "Invalid movie ID."
+          },
+          "404": {
+            "description": "Movie not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Update a movie",
+        "description": "Updates an existing movie using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the movie."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated movie information. All fields are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/MovieInput"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Movie updated successfully."
+          },
+          "400": {
+            "description": "Invalid movie data or ID."
+          },
+          "404": {
+            "description": "Movie not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Movies"
+        ],
+        "summary": "Delete a movie",
+        "description": "Deletes an existing movie using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the movie."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Movie deleted successfully."
+          },
+          "400": {
+            "description": "Invalid movie ID."
+          },
+          "404": {
+            "description": "Movie not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/directors/": {
+      "get": {
+        "tags": [
+          "Directors"
+        ],
+        "summary": "Get all directors",
+        "description": "Returns all directors stored in the database.",
+        "responses": {
+          "200": {
+            "description": "Directors retrieved successfully.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Director"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Directors"
+        ],
+        "summary": "Create a director",
+        "description": "Creates a new director.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Director information. All fields are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DirectorInput"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Director created successfully.",
+            "schema": {
+              "$ref": "#/definitions/CreateResponse"
+            }
+          },
+          "400": {
+            "description": "Validation failed."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/directors/{id}": {
+      "get": {
+        "tags": [
+          "Directors"
+        ],
+        "summary": "Get director by ID",
+        "description": "Returns one director using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the director."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Director retrieved successfully.",
+            "schema": {
+              "$ref": "#/definitions/Director"
+            }
+          },
+          "400": {
+            "description": "Invalid director ID."
+          },
+          "404": {
+            "description": "Director not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Directors"
+        ],
+        "summary": "Update a director",
+        "description": "Updates an existing director using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the director."
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Updated director information. All fields are required.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DirectorInput"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Director updated successfully."
+          },
+          "400": {
+            "description": "Invalid director data or ID."
+          },
+          "404": {
+            "description": "Director not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Directors"
+        ],
+        "summary": "Delete a director",
+        "description": "Deletes an existing director using its MongoDB ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ID of the director."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Director deleted successfully."
+          },
+          "400": {
+            "description": "Invalid director ID."
+          },
+          "404": {
+            "description": "Director not found."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Movie": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "64f1a2b3c4d5e6f789012345"
+        },
+        "title": {
+          "type": "string",
+          "example": "Inception"
+        },
+        "director": {
+          "type": "string",
+          "example": "Christopher Nolan"
+        },
+        "genre": {
+          "type": "string",
+          "example": "Science Fiction"
+        },
+        "releaseYear": {
+          "type": "number",
+          "example": 2010
+        },
+        "rating": {
+          "type": "number",
+          "example": 8.8
+        },
+        "duration": {
+          "type": "number",
+          "example": 148
+        },
+        "language": {
+          "type": "string",
+          "example": "English"
+        }
+      }
+    },
+    "MovieInput": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "Inception"
+        },
+        "director": {
+          "type": "string",
+          "example": "Christopher Nolan"
+        },
+        "genre": {
+          "type": "string",
+          "example": "Science Fiction"
+        },
+        "releaseYear": {
+          "type": "number",
+          "example": 2010
+        },
+        "rating": {
+          "type": "number",
+          "example": 8.8
+        },
+        "duration": {
+          "type": "number",
+          "example": 148
+        },
+        "language": {
+          "type": "string",
+          "example": "English"
+        }
+      },
+      "required": [
+        "title",
+        "director",
+        "genre",
+        "releaseYear",
+        "rating",
+        "duration",
+        "language"
+      ]
+    },
+    "Director": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "64f1a2b3c4d5e6f789012345"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Christopher"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Nolan"
+        },
+        "birthYear": {
+          "type": "number",
+          "example": 1970
+        },
+        "nationality": {
+          "type": "string",
+          "example": "British-American"
+        }
+      }
+    },
+    "DirectorInput": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string",
+          "example": "Christopher"
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Nolan"
+        },
+        "birthYear": {
+          "type": "number",
+          "example": 1970
+        },
+        "nationality": {
+          "type": "string",
+          "example": "British-American"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName",
+        "birthYear",
+        "nationality"
+      ]
+    },
+    "CreateResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "example": "64f1a2b3c4d5e6f789012345"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Resource not found."
+        }
+      }
+    }
+  }
+}

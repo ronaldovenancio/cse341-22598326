@@ -1,0 +1,210 @@
+@baseUrl = http://localhost:8080
+
+### GET ALL MOVIES
+GET {{baseUrl}}/movies
+
+
+### CREATE MOVIE
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{
+  "title": "Inception",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "releaseYear": 2010,
+  "rating": 8.8,
+  "duration": 148,
+  "language": "English"
+}
+
+
+### GET MOVIE BY ID
+GET {{baseUrl}}/movies/6aab4224acff9a903c600f06
+
+
+### CREATE MOVIE - INVALID DATA
+POST {{baseUrl}}/movies
+Content-Type: application/json
+
+{
+  "title": "Interstellar",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "rating": 8.7,
+  "duration": 169,
+  "language": "English"
+}
+
+
+### UPDATE MOVIE
+PUT {{baseUrl}}/movies/6aab4224acff9a903c600f06
+Content-Type: application/json
+
+{
+  "title": "Inception Updated",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "releaseYear": 2010,
+  "rating": 9.0,
+  "duration": 148,
+  "language": "English"
+}
+
+
+### CONFIRM UPDATED MOVIE
+GET {{baseUrl}}/movies/6aab4224acff9a903c600f06
+
+
+### UPDATE MOVIE - INVALID DATA
+PUT {{baseUrl}}/movies/6aab4224acff9a903c600f06
+Content-Type: application/json
+
+{
+  "title": "Inception Updated",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "releaseYear": "invalid",
+  "rating": 9,
+  "duration": 148,
+  "language": "English"
+}
+
+
+### UPDATE MOVIE - INVALID ID
+PUT {{baseUrl}}/movies/123
+Content-Type: application/json
+
+{
+  "title": "Inception Updated",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "releaseYear": 2010,
+  "rating": 9,
+  "duration": 148,
+  "language": "English"
+}
+
+
+### DELETE MOVIE - INVALID ID
+DELETE {{baseUrl}}/movies/123
+
+
+### DELETE MOVIE
+DELETE {{baseUrl}}/movies/6aab4224acff9a903c600f06
+
+
+### CONFIRM MOVIE WAS DELETED
+GET {{baseUrl}}/movies/6aab4224acff9a903c600f06
+
+
+
+### GET ALL DIRECTORS
+GET {{baseUrl}}/directors
+
+
+### CREATE DIRECTOR
+POST {{baseUrl}}/directors
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan",
+  "birthYear": 1970,
+  "nationality": "British-American"
+}
+
+
+### GET DIRECTOR BY ID
+GET {{baseUrl}}/directors/6aab466e09e7440a72693f00
+
+
+### CREATE DIRECTOR - INVALID DATA
+POST {{baseUrl}}/directors
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan",
+  "birthYear": "invalid",
+  "nationality": "British-American"
+}
+
+
+### UPDATE DIRECTOR
+PUT {{baseUrl}}/directors/6aab466e09e7440a72693f00
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan Updated",
+  "birthYear": 1970,
+  "nationality": "British-American"
+}
+
+
+### CONFIRM UPDATED DIRECTOR
+GET {{baseUrl}}/directors/6aab466e09e7440a72693f00
+
+
+### UPDATE DIRECTOR - INVALID DATA
+PUT {{baseUrl}}/directors/6aab466e09e7440a72693f00
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan Updated",
+  "birthYear": "invalid",
+  "nationality": "British-American"
+}
+
+
+### UPDATE DIRECTOR - INVALID ID
+PUT {{baseUrl}}/directors/123
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan Updated",
+  "birthYear": 1970,
+  "nationality": "British-American"
+}
+
+### DELETE DIRECTOR - INVALID ID
+DELETE {{baseUrl}}/directors/123
+
+
+### DELETE DIRECTOR
+DELETE {{baseUrl}}/directors/6aab466e09e7440a72693f00
+
+
+### CONFIRM DIRECTOR WAS DELETED
+GET {{baseUrl}}/directors/6aab466e09e7440a72693f00
+
+
+### UPDATE MOVIE - INVALID DATA
+PUT http://localhost:8080/movies/6aac6f3a3826798cc7d46f05
+Content-Type: application/json
+
+{
+  "title": "Inception Updated",
+  "director": "Christopher Nolan",
+  "genre": "Science Fiction",
+  "releaseYear": "invalid",
+  "rating": 9,
+  "duration": 148,
+  "language": "English"
+}
+
+
+### TESTE PARA FECHAR DIRECTORS - INVALID DATA
+PUT http://localhost:8080/directors/6aac73fa3826798cc7d46f06
+Content-Type: application/json
+
+{
+  "firstName": "Christopher",
+  "lastName": "Nolan Updated",
+  "birthYear": "invalid",
+  "nationality": "British-American"
+}
+
