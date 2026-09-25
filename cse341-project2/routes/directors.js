@@ -3,6 +3,7 @@ const router = express.Router();
 
 const directorsController = require('../controllers/directors');
 const validation = require('../middleware/validate');
+const { isAuthenticated } = require('../middleware/auth');
 
 router.get(
   '/',
@@ -66,7 +67,7 @@ router.post(
   /*
     #swagger.tags = ['Directors']
     #swagger.summary = 'Create a director'
-    #swagger.description = 'Creates a new director.'
+    #swagger.description = 'Creates a new director. Authentication is required.'
 
     #swagger.parameters['body'] = {
       in: 'body',
@@ -88,10 +89,15 @@ router.post(
       description: 'Validation failed.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[500] = {
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   validation.saveDirector,
   directorsController.createDirector
 );
@@ -101,7 +107,7 @@ router.put(
   /*
     #swagger.tags = ['Directors']
     #swagger.summary = 'Update a director'
-    #swagger.description = 'Updates an existing director using its MongoDB ID.'
+    #swagger.description = 'Updates an existing director using its MongoDB ID. Authentication is required.'
 
     #swagger.parameters['id'] = {
       in: 'path',
@@ -127,6 +133,10 @@ router.put(
       description: 'Invalid director data or ID.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[404] = {
       description: 'Director not found.'
     }
@@ -135,6 +145,7 @@ router.put(
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   validation.saveDirector,
   directorsController.updateDirector
 );
@@ -144,7 +155,7 @@ router.delete(
   /*
     #swagger.tags = ['Directors']
     #swagger.summary = 'Delete a director'
-    #swagger.description = 'Deletes an existing director using its MongoDB ID.'
+    #swagger.description = 'Deletes an existing director using its MongoDB ID. Authentication is required.'
 
     #swagger.parameters['id'] = {
       in: 'path',
@@ -161,6 +172,10 @@ router.delete(
       description: 'Invalid director ID.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[404] = {
       description: 'Director not found.'
     }
@@ -169,6 +184,7 @@ router.delete(
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   directorsController.deleteDirector
 );
 

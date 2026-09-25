@@ -3,6 +3,7 @@ const router = express.Router();
 
 const moviesController = require('../controllers/movies');
 const validation = require('../middleware/validate');
+const { isAuthenticated } = require('../middleware/auth');
 
 router.get(
   '/',
@@ -88,10 +89,15 @@ router.post(
       description: 'Validation failed.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[500] = {
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   validation.saveMovie,
   moviesController.createMovie
 );
@@ -101,7 +107,7 @@ router.put(
   /*
     #swagger.tags = ['Movies']
     #swagger.summary = 'Update a movie'
-    #swagger.description = 'Updates an existing movie using its MongoDB ID.'
+    #swagger.description = 'Updates an existing movie using its MongoDB ID. Authentication is required.'
 
     #swagger.parameters['id'] = {
       in: 'path',
@@ -127,6 +133,10 @@ router.put(
       description: 'Invalid movie data or ID.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[404] = {
       description: 'Movie not found.'
     }
@@ -135,6 +145,7 @@ router.put(
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   validation.saveMovie,
   moviesController.updateMovie
 );
@@ -144,7 +155,7 @@ router.delete(
   /*
     #swagger.tags = ['Movies']
     #swagger.summary = 'Delete a movie'
-    #swagger.description = 'Deletes an existing movie using its MongoDB ID.'
+    #swagger.description = 'Deletes an existing movie using its MongoDB ID. Authentication is required.'
 
     #swagger.parameters['id'] = {
       in: 'path',
@@ -161,6 +172,10 @@ router.delete(
       description: 'Invalid movie ID.'
     }
 
+    #swagger.responses[401] = {
+      description: 'Authentication required.'
+    }
+
     #swagger.responses[404] = {
       description: 'Movie not found.'
     }
@@ -169,6 +184,7 @@ router.delete(
       description: 'Internal server error.'
     }
   */
+  isAuthenticated,
   moviesController.deleteMovie
 );
 

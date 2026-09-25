@@ -21,6 +21,127 @@
         }
       }
     },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/github": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login with GitHub",
+        "description": "Starts the GitHub OAuth authorization flow.",
+        "responses": {
+          "302": {
+            "description": "Redirects the user to GitHub."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "GitHub OAuth callback",
+        "description": "Handles the GitHub OAuth callback and establishes the authenticated application session.",
+        "responses": {
+          "302": {
+            "description": "Authentication succeeded and the user is redirected to the API documentation."
+          },
+          "401": {
+            "description": "GitHub authentication failed."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/auth/status": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Check authentication status",
+        "description": "Returns whether the current user has an authenticated session.",
+        "responses": {
+          "200": {
+            "description": "Authentication status returned successfully."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/auth/profile": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get authenticated user profile",
+        "description": "Protected route. Returns the current authenticated user profile.",
+        "responses": {
+          "200": {
+            "description": "Authenticated user profile returned successfully."
+          },
+          "401": {
+            "description": "Authentication required."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/auth/failure": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "GitHub authentication failure",
+        "description": "Returns an error when GitHub authentication is unsuccessful.",
+        "responses": {
+          "401": {
+            "description": "GitHub authentication failed."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Log out",
+        "description": "Protected route. Ends the authenticated user session.",
+        "responses": {
+          "200": {
+            "description": "Logged out successfully."
+          },
+          "401": {
+            "description": "Authentication required."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        }
+      }
+    },
     "/movies/": {
       "get": {
         "tags": [
@@ -73,6 +194,9 @@
           "400": {
             "description": "Validation failed."
           },
+          "401": {
+            "description": "Authentication required."
+          },
           "500": {
             "description": "Internal server error."
           }
@@ -118,7 +242,7 @@
           "Movies"
         ],
         "summary": "Update a movie",
-        "description": "Updates an existing movie using its MongoDB ID.",
+        "description": "Updates an existing movie using its MongoDB ID. Authentication is required.",
         "parameters": [
           {
             "name": "id",
@@ -144,6 +268,9 @@
           "400": {
             "description": "Invalid movie data or ID."
           },
+          "401": {
+            "description": "Authentication required."
+          },
           "404": {
             "description": "Movie not found."
           },
@@ -157,7 +284,7 @@
           "Movies"
         ],
         "summary": "Delete a movie",
-        "description": "Deletes an existing movie using its MongoDB ID.",
+        "description": "Deletes an existing movie using its MongoDB ID. Authentication is required.",
         "parameters": [
           {
             "name": "id",
@@ -173,6 +300,9 @@
           },
           "400": {
             "description": "Invalid movie ID."
+          },
+          "401": {
+            "description": "Authentication required."
           },
           "404": {
             "description": "Movie not found."
@@ -213,7 +343,7 @@
           "Directors"
         ],
         "summary": "Create a director",
-        "description": "Creates a new director.",
+        "description": "Creates a new director. Authentication is required.",
         "parameters": [
           {
             "name": "body",
@@ -234,6 +364,9 @@
           },
           "400": {
             "description": "Validation failed."
+          },
+          "401": {
+            "description": "Authentication required."
           },
           "500": {
             "description": "Internal server error."
@@ -280,7 +413,7 @@
           "Directors"
         ],
         "summary": "Update a director",
-        "description": "Updates an existing director using its MongoDB ID.",
+        "description": "Updates an existing director using its MongoDB ID. Authentication is required.",
         "parameters": [
           {
             "name": "id",
@@ -306,6 +439,9 @@
           "400": {
             "description": "Invalid director data or ID."
           },
+          "401": {
+            "description": "Authentication required."
+          },
           "404": {
             "description": "Director not found."
           },
@@ -319,7 +455,7 @@
           "Directors"
         ],
         "summary": "Delete a director",
-        "description": "Deletes an existing director using its MongoDB ID.",
+        "description": "Deletes an existing director using its MongoDB ID. Authentication is required.",
         "parameters": [
           {
             "name": "id",
@@ -335,6 +471,9 @@
           },
           "400": {
             "description": "Invalid director ID."
+          },
+          "401": {
+            "description": "Authentication required."
           },
           "404": {
             "description": "Director not found."
